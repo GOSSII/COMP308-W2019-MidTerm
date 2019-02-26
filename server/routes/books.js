@@ -38,16 +38,21 @@ router.get('/add', (req, res, next) => {
 });
 
 // POST process the Book Details page and create a new Book - CREATE
-router.get('/add', (req, res, next) => {
-  book.find((err, books) => {
+router.post('/add', (req, res, next) => {
+   console.log(req.body.NameTextField);
+  let newBookObject = book({
+    "Title": req.body.NameTextField,
+    "Price": req.body.PriceTextField,
+    "Author": req.body.AuthorTextField,
+    "Genre": req.body.GenreTextField,
+  });
+  book.create(newBookObject, (err, books) => {
     if (err) {
-      return console.error(err);
+      console.log(err);
+      res.end(err);
     }
     else {
-      res.render('books/details', {
-        title: 'Books',
-        books: books
-      });
+      res.redirect('/books');
     }
   });
 });
