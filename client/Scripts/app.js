@@ -1,3 +1,7 @@
+// Name : Dipeshpuri Goswami
+//  StudentId : 300984229
+//  WebApp Name : Mid-term Test
+
 /* custom JS goes here */
 
 /* pagination code from http://www.bootply.com/lxa0FF9yhw */
@@ -101,6 +105,8 @@ $.fn.pageMe = function(opts){
         pager.children().eq(page+1).addClass("active");
 
     }
+
+    // document.querySelectorAll(".btn-danger").addEventListener("click", )
 };
 
 // IIFE
@@ -108,9 +114,10 @@ $.fn.pageMe = function(opts){
   $(".btn-danger").click(function(event){
     if(!confirm("Are you sure?")) {
       event.preventDefault();
-      window.location.assign("/games");
+      window.location.assign("/books");
     }
   });
+
 
  /* pagination code */
   $('#myTable').pageMe(

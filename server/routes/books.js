@@ -1,3 +1,7 @@
+//  Name : Dipeshpuri Goswami
+//  StudentId : 300984229
+//  WebApp Name : Mid-term Test
+
 // modules required for routing
 let express = require('express');
 let router = express.Router();
@@ -8,7 +12,7 @@ let book = require('../models/books');
 
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
-  book.find( (err, books) => {
+  book.find((err, books) => {
     if (err) {
       return console.error(err);
     }
@@ -30,7 +34,7 @@ router.get('/add', (req, res, next) => {
     }
     else {
       res.render('books/details', {
-        title: 'Books',
+        title: 'Add a Books',
         books: books
       });
     }
@@ -39,7 +43,7 @@ router.get('/add', (req, res, next) => {
 
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
-   console.log(req.body.NameTextField);
+  console.log(req.body.NameTextField);
   let newBookObject = book({
     "Title": req.body.NameTextField,
     "Price": req.body.PriceTextField,
@@ -88,26 +92,36 @@ router.post('/edit/:id', (req, res, next) => {
 
   });
 
-  book.update({_id: id}, updatedBook, (err) => {
-      if(err) {
-          console.log(err);
-          res.end(err);
-      }
-      else {
-          // go back to home page
-          res.redirect('/books');
-      }
+  book.update({ _id: id }, updatedBook, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    }
+    else {
+      res.redirect('/books');
+    }
   })
 });
 
 
 // GET - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
+  let id = req.params.id;
 
-    /*****************
-     * ADD CODE HERE *
-     *****************/
+  book.remove({ _id: id }, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    }
+    else {
+      res.redirect('/books');
+    }
+  });
+
+
 });
+
+
 
 
 module.exports = router;

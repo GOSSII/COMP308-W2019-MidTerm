@@ -1,3 +1,7 @@
+//  Name : Dipeshpuri Goswami
+//  StudentId : 300984229
+//  WebApp Name : Mid-term Test
+
 module.exports = {
   //local MongoDB deployment ->
   "URI": "mongodb://localhost/books308"
