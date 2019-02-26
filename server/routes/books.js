@@ -8,14 +8,13 @@ let book = require('../models/books');
 
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
-  // find all books in the books collection
   book.find( (err, books) => {
     if (err) {
       return console.error(err);
     }
     else {
       res.render('books/index', {
-        title: 'Books',
+        title: 'Book List',
         books: books
       });
     }
@@ -25,20 +24,32 @@ router.get('/', (req, res, next) => {
 
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
-
+  book.find((err, books) => {
+    if (err) {
+      return console.error(err);
+    }
+    else {
+      res.render('books/details', {
+        title: 'Books',
+        books: books
+      });
+    }
+  });
 });
 
 // POST process the Book Details page and create a new Book - CREATE
-router.post('/add', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
-
+router.get('/add', (req, res, next) => {
+  book.find((err, books) => {
+    if (err) {
+      return console.error(err);
+    }
+    else {
+      res.render('books/details', {
+        title: 'Books',
+        books: books
+      });
+    }
+  });
 });
 
 // GET the Book Details page in order to edit an existing Book
